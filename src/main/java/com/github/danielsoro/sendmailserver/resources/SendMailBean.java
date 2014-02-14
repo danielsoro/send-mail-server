@@ -38,7 +38,7 @@ public class SendMailBean {
 				}
 				msg.setRecipients(RecipientType.TO, internetAdress);
 			}
-			msg.setText("GAY!! :-)", "UTF-8");
+			msg.setText("TESTE!! :-)", "UTF-8");
 			msg.setHeader("Content-Type", "text/html;charset=UTF-8");
 			Transport.send(msg);
 		} catch (MessagingException e) {
