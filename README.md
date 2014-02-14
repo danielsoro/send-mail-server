@@ -3,8 +3,9 @@ send-mail-server
 
 Simples example about sending mail on WildFly. :-)
 
-------------------------------------
+
 Configuration JavaMail in WildFly 8
+====================================
 
 Example into standalone.xml
 ```xml
