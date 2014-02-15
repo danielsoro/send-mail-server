@@ -1,7 +1,7 @@
 send-mail-server
 ================
 
-Simples example about sending mail on WildFly. :-)
+Simple example about sending mail on WildFly. :-)
 
 
 Configuration JavaMail in WildFly 8
