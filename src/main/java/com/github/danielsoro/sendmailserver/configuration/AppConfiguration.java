@@ -25,7 +25,7 @@ import javax.ws.rs.core.Application;
  * @author Daniel Cunha (danielsoro@gmail.com)
  * 
  */
-@ApplicationPath("/")
+@ApplicationPath("rest")
 public class AppConfiguration extends Application {
 
 }
