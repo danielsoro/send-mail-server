@@ -18,33 +18,51 @@
 
 package com.github.danielsoro.sendmailserver.view;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Any;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
+import javax.inject.Named;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import com.github.danielsoro.sendmailserver.model.Email;
+import com.github.danielsoro.sendmailserver.model.FormFileUpload;
 
 /**
  * @author Daniel Cunha (danielsoro@gmail.com)
  * 
  */
-@Path("/mail")
+@Path("mail")
 public class MailMB {
 
 	@Inject
 	@Any
 	private Event<Email> event;
 
-	@GET
-	@Path("/send")
-	public Response send() {
-		Email email = new Email("email1", "email2", "email3");
-		event.fire(email);
-		return Response.status(Status.OK).encoding("UTF-8")
-				.entity("Hello World").build();
+	@Inject
+	@Named("default.encoding")
+	private String defautlEncoding;
+
+	@POST
+	@Path("send")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response send(@MultipartForm FormFileUpload fileUpload) {
+		try {
+			FileReader fileReader = new FileReader(fileUpload.getFile());
+			Email email = new Email(fileUpload.getSubject(),
+					fileUpload.getText(), "danielsoro@gmail.com");
+			event.fire(email);
+			return null;
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

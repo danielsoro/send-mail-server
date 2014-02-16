@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+<title>send-mail-server</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<form action="rest/mail/send" method="post"
+		enctype="multipart/form-data">
+		Assunto: <input type="text" name="subject" /> <br />
+		Text: <textarea rows="20" cols="50" name="text"></textarea> <br />
+		Arquivo: <input type="file" name="uploadedFile" size="50" /> <br />
+		<input type="submit" value="Upload" />
+	</form>
+</body>
 </html>
