@@ -29,7 +29,7 @@ Example with jboss-cli
 ```
 
 ```bash
-/subsystem=mail/mail-session=App:add(jndi-name=java:/mail/gmail)
+/subsystem=mail/mail-session=App:add(jndi-name=java:/mail/gmail,from="email@gmail.com",debug=true)
 ```
 
 ```bash
